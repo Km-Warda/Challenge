@@ -1,13 +1,47 @@
-# Dockerized Laravel API and Nuxt.js Client
+# Application Deployment
 
-## Requirements
+- #### The Backend `API` written in Laravel-PHP, and listens on port 8000.
+- #### The Frontend `CLIENT` written in Nuxt.js, and listens on port 3000.
+- #### Nginx Server as a proxy server, and listens on Https port.
+- #### GitHub action as a CICD tool
 
-- Docker
-- Docker Compose
+##  Application Images
+- Docker files are created in the `./api` & `./client` for the backend & frontend respectively.
+- docker-compose.yaml file starts the images {database, api, client, nginx}
+## Steps To start the application
+- Add or create your own certificate in the `nginx/cert` file
+- The certificate is in the `.gitignore file`
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048   -keyout ./nginx/certs/nginx-selfsigned.key   -out ./nginx/certs/nginx-selfsigned.crt   -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=localhost"
+```
+- make sure that your certificate is the one in the `nginx/default.conf`
+![Pasted image 20240927225035](https://github.com/user-attachments/assets/518bdc7b-5c93-4aa9-931e-d0f94bc622e4)
+- Put the credentials in a `.env` file, in he same directory as `docker-compose.yaml file`
+- Put your own credentials to the database, for this project we can use simple configuration as follows:
+![Pasted image 20240927225404](https://github.com/user-attachments/assets/b726d766-543a-42e8-a316-d392f82118eb)
+- Start the compose file
+```
+docker-compose up --build
+```
 
-## How to Run
+- Now the application is accessible through the web browser 
+![Pasted image 20240927230202](https://github.com/user-attachments/assets/e48a999d-4656-48cc-97af-0f2dcd1fd9a4)
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/only-for-testing/Challenge.git
+## CICD using GitHub Actions
+- The pipeline will run when any updates occur on the main branch for the repository
+```
+on:
+  push:
+    branches:
+      - main
+```
+- Edit your GitHub repository secrets to contain your docker username & password
+```
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+```
+- Here is the full CICD configurations in `.github/workflows/docker.yml`
+![Pasted image 20240927230638](https://github.com/user-attachments/assets/653cd3b7-6ba0-4901-b0bc-0d8f720f5a76)
