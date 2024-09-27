@@ -2,20 +2,12 @@ version: '3.8'
 
 networks:
   network:
-<<<<<<< HEAD
     driver: bridge
-=======
-    driver: bridge  
->>>>>>> refs/remotes/origin/main
     ipam:
       config:
         - subnet: 172.18.0.0/16  # Define the subnet for the network
           gateway: 172.18.0.1  # Optional: Set the gateway IP
-<<<<<<< HEAD
-
-=======
           
->>>>>>> refs/remotes/origin/main
 services:
 
   # MYSQL DataBase
@@ -35,11 +27,8 @@ services:
     dns:
       - 8.8.8.8
       - 8.8.4.4
-<<<<<<< HEAD
 
-=======
   
->>>>>>> refs/remotes/origin/main
   # Backend (Laravel)
   api:
     build: ./api
@@ -95,11 +84,7 @@ services:
         ipv4_address: 172.18.0.5  # Valid static IP address
     depends_on:
       - api
-<<<<<<< HEAD
       - client
-=======
-      - client        
->>>>>>> refs/remotes/origin/main
     dns:
       - 8.8.8.8
       - 8.8.4.4
