@@ -1,13 +1,14 @@
-#Build stage
-FROM node:18 as build
+FROM node:18.14.2
 
-WORKDIR /usr/src/app
+WORKDIR /app
+
 COPY package*.json ./
-RUN apt-get update && apt-get upgrade -y
-RUN npm install
-COPY . .
-RUN npm run build
 
+RUN npm install
+
+COPY . .
 
 EXPOSE 3000
-CMD ["npm", "start"]
+
+RUN npm run build
+CMD [ "npm", "run", "serve" ]

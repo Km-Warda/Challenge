@@ -1,13 +1,12 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+
+// nuxt.config.js or nuxt.config.ts
 export default defineNuxtConfig({
   devtools: { enabled: true },
-})
-// module.exports = {
-//   devServer: {
-//     open: process.platform === 'darwin',
-//     host: '0.0.0.0',
-//     port: 443, // CHANGE YOUR PORT HERE!
-//     https: true,
-//     hotOnly: false,
-//   },
-// }
+
+  // Add this server configuration for Docker
+  devServer: {
+    host: '0.0.0.0', // Bind to all network interfaces
+    port: 3000,      // Use port 3000, or change as necessary
+    https: false     // Set to true if using HTTPS, otherwise false
+  },
+});
