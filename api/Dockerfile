@@ -30,7 +30,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Set file permissions
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www/storage
 
-# Expose port 9000
-EXPOSE 9000
+# Expose port 8000
+EXPOSE 8000
 
 CMD ["php-fpm"]
