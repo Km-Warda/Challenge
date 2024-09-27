@@ -1,15 +1,16 @@
 version: '3.8'
 
-  
 networks:
   network:
     driver: bridge  
-
-      
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16  # Define the subnet for the network
+          gateway: 172.18.0.1  # Optional: Set the gateway IP
+          
 services:
 
-
-  #MYSQL DataBase
+  # MYSQL DataBase
   db:
     image: mysql:8.0
     container_name: db
@@ -22,9 +23,13 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - network
+      network:
+        ipv4_address: 172.18.0.2  # Valid static IP address
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
   
-  #Backend (Laravel)
+  # Backend (Laravel)
   api:
     build: ./api
     container_name: api
@@ -36,15 +41,19 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
     networks:
-      - network
+      network:
+        ipv4_address: 172.18.0.3  # Valid static IP address
     volumes:
       - ./api:/var/www
     ports:
       - "8000:8000"
     depends_on:
       - db
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
-  #Frontend (Nuxt.js)
+  # Frontend (Nuxt.js)
   client:
     build: ./client
     container_name: client
@@ -55,9 +64,13 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - network
+      network:
+        ipv4_address: 172.18.0.4  # Valid static IP address
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
-  #Proxy Server      
+  # Proxy Server      
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -65,15 +78,16 @@ services:
       - ./nginx/certs/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt
       - ./nginx/certs/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
     ports:
-      - "443:443" #HTTPS Port
+      - "443:443" # HTTPS Port
     networks:
-      - network
+      network:
+        ipv4_address: 172.18.0.5  # Valid static IP address
     depends_on:
       - api
       - client        
-
-
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
 volumes:
   db_data:
-
