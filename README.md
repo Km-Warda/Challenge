@@ -29,6 +29,12 @@ docker-compose up --build
 - You can check for the migrated tables as well, this is done via the `./api/docker-entrypoint.sh` script.
 ![Pasted image 20240928195941](https://github.com/user-attachments/assets/1198663a-7e1b-4831-b2ed-bfb679cbb186)
 
+## Migration Error
+- If you ecountered error 500, probably the migration for the tables happened before the mysql engine fully boots, this may happen due to short hardware resources or network problem.
+- To fix this increse the wait time in the `./api/docker-entrypoint.sh` script
+```
+wait 30
+```
 
 ## CICD using GitHub Actions
 - The pipeline will run when any updates occur on the main branch for the repository
