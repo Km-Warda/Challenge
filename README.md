@@ -16,7 +16,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048   -keyout ./nginx/certs/ngin
 ```
 - make sure that your certificate is the one in the `nginx/default.conf`
 ![Pasted image 20240927225035](https://github.com/user-attachments/assets/518bdc7b-5c93-4aa9-931e-d0f94bc622e4)
-- Put the credentials in a `.env` file, in he same directory as `docker-compose.yaml file`
+- Put the credentials in an `.env` file, in he same directory as `docker-compose.yaml file`
 - Put your own credentials to the database, for this project we can use simple configuration as follows:
 ![Pasted image 20240928194238](https://github.com/user-attachments/assets/e0f14731-88f0-41b3-afb8-386f35bf498f)
 - Start the compose file
