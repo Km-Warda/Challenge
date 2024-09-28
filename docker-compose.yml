@@ -15,12 +15,14 @@ services:
     image: mysql:8.0
     container_name: db
     environment:
-      MYSQL_HOST: localhost
+      MYSQL_HOST: 127.0.0.1
       MYSQL_DATABASE: bookapi
       MYSQL_USER: app
       MYSQL_PASSWORD: password 
     volumes:
       - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
     networks:
       network:
         ipv4_address: 172.18.0.2  # Valid static IP address
@@ -35,7 +37,7 @@ services:
     container_name: api
     environment:
       DB_CONNECTION: mysql
-      DB_HOST: localhost
+      DB_HOST: 172.18.0.2
       DB_PORT: 3306
       DB_DATABASE: bookapi
       DB_USERNAME: app
