@@ -18,14 +18,17 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048   -keyout ./nginx/certs/ngin
 ![Pasted image 20240927225035](https://github.com/user-attachments/assets/518bdc7b-5c93-4aa9-931e-d0f94bc622e4)
 - Put the credentials in a `.env` file, in he same directory as `docker-compose.yaml file`
 - Put your own credentials to the database, for this project we can use simple configuration as follows:
-![Pasted image 20240927225404](https://github.com/user-attachments/assets/b726d766-543a-42e8-a316-d392f82118eb)
+![Pasted image 20240928194238](https://github.com/user-attachments/assets/e0f14731-88f0-41b3-afb8-386f35bf498f)
 - Start the compose file
 ```
 docker-compose up --build
 ```
 
 - Now the application is accessible through the web browser 
-![Pasted image 20240927230202](https://github.com/user-attachments/assets/e48a999d-4656-48cc-97af-0f2dcd1fd9a4)
+![Pasted image 20240928195342](https://github.com/user-attachments/assets/2bc01390-43ee-4793-9587-49f48884bc8c)
+- You can check for the migrated tables as well, this is done via the `./api/docker-entrypoint.sh` script.
+![Pasted image 20240928195941](https://github.com/user-attachments/assets/1198663a-7e1b-4831-b2ed-bfb679cbb186)
+
 
 ## CICD using GitHub Actions
 - The pipeline will run when any updates occur on the main branch for the repository
