@@ -24,7 +24,8 @@ jobs:
 
     - name: Build and push Laravel API image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/laravel-api:latest ./api
+        cd api
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/laravel-api:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/laravel-api:latest
 
     - name: Build and push Nuxt.js Client image
