@@ -37,5 +37,11 @@ RUN php artisan config:clear
 # Expose port 8000
 EXPOSE 8000
 
-# Start Laravel development server
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Use the custom entrypoint script
+ENTRYPOINT ["docker-entrypoint.sh"]
