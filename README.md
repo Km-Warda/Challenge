@@ -18,7 +18,18 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048   -keyout ./nginx/certs/ngin
 ![Pasted image 20240927225035](https://github.com/user-attachments/assets/518bdc7b-5c93-4aa9-931e-d0f94bc622e4)
 - Put the credentials in an `.env` file, in he same directory as `docker-compose.yaml file`
 - Put your own credentials to the database, for this project we can use simple configuration as follows:
-![Pasted image 20240928194238](https://github.com/user-attachments/assets/e0f14731-88f0-41b3-afb8-386f35bf498f)
+```
+MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=bookapi
+MYSQL_USER=app
+MYSQL_PASSWORD=password
+DB_CONNECTION=mysql
+DB_HOST=172.18.0.2
+DB_PORT=3306
+DB_DATABASE=bookapi
+DB_USERNAME=app
+DB_PASSWORD=password
+```
 - Start the compose file
 ```
 docker-compose up --build
