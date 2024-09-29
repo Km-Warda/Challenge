@@ -4,7 +4,7 @@
 php artisan serve --host=0.0.0.0 --port=8000 &
 
 # Wait for a few seconds to ensure the server has started
-sleep 10
+sleep 40
 
 # Run the database migrations
 php artisan migrate --force
