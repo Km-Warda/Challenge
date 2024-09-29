@@ -28,7 +28,6 @@ MYSQL_PASSWORD=password
 
 # Laravel (API) environment variables
 DB_CONNECTION=mysql
-DB_HOST=172.18.0.2
 DB_PORT=3306
 DB_DATABASE=bookapi
 DB_USERNAME=app
