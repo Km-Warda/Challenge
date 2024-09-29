@@ -16,13 +16,17 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048   -keyout ./nginx/certs/ngin
 ```
 - make sure that your certificate is the one in the `nginx/default.conf`
 ![Pasted image 20240927225035](https://github.com/user-attachments/assets/518bdc7b-5c93-4aa9-931e-d0f94bc622e4)
-- Put the credentials in an `.env` file, in he same directory as `docker-compose.yaml file`
-- Put your own credentials to the database, for this project we can use simple configuration as follows:
+- Create an `.env` file, in he same directory as `docker-compose.yaml file`
+- Put your own credentials to the database and variables in the `env` file, for this testing use simple configuration as the following example:
 ```
-MYSQL_ROOT_PASSWORD=rootpassword
+# Database (MySQL) environment variables
+MYSQL_ROOT_PASSWORD=root_password
+MYSQL_HOST=127.0.0.1
 MYSQL_DATABASE=bookapi
 MYSQL_USER=app
 MYSQL_PASSWORD=password
+
+# Laravel (API) environment variables
 DB_CONNECTION=mysql
 DB_HOST=172.18.0.2
 DB_PORT=3306
