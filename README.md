@@ -47,7 +47,7 @@ docker-compose up --build
 - If you ecountered error 500, probably the migration for the tables happened before the mysql engine fully boots, this may happen due to short hardware resources or network problem.
 - To fix this increse the wait time in the `./api/docker-entrypoint.sh` script
 ```
-wait 30
+wait 40
 ```
 
 ## CICD using GitHub Actions
