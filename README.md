@@ -48,7 +48,7 @@ wait 30
 ```
 
 ## CICD using GitHub Actions
-- The pipeline will run when any updates occur on the main branch for the repository
+- The pipeline will run automatically when any updates occur on the main branch for the repository
 ```
 on:
   push:
