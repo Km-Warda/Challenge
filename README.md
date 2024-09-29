@@ -51,8 +51,7 @@ docker-compose up --build
 - WE can acces the application through our DNS. HTTP requests are seamlessly redirected to HTTPS. The DNS used is `https://bookapi` in this case
   ![GIF](https://github.com/user-attachments/assets/64a7e26b-e348-442f-9f97-37bfb5388ed0)
 
-- You can also check the client, api, & db containers are up with no errors at this point at `localhost:3000` 
-![Pasted image 20240928195342](https://github.com/user-attachments/assets/2bc01390-43ee-4793-9587-49f48884bc8c)
+- You can also check the client, api, & db containers are up with no errors at the buttom from `localhost:3000` 
 - You can check for the migrated tables form `api` as well, this is done via the `./api/docker-entrypoint.sh` script.
 ![Pasted image 20240928195941](https://github.com/user-attachments/assets/1198663a-7e1b-4831-b2ed-bfb679cbb186)
 
@@ -87,6 +86,11 @@ wait 40
 ```
 ## NginX not forwarding traffic as expected
 - Make sure the DNS used in `nginx/default.conf` either a valid domain name or in the hosts file with ip similar as that of your localhost one.
+
+## [GET] "http://api:8000/api/books": 500 Internal Server Error
+- MYSQL DB container isn't reachable or has some issues.
+## [GET] "http://api:8000/api/books": <no response> fetch failed
+- api Backend contaier isn't reachable or has some issues.
 
 ## Notes: 
 - The client [POST] requests are still on development, entries can't be added from the front-end but can be done through accessing mysql db, and would appear as the [GET] requests are fine.
