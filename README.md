@@ -65,3 +65,5 @@ on:
 ```
 - Here is the full CICD configurations in `.github/workflows/docker.yml`
 ![Pasted image 20240927230638](https://github.com/user-attachments/assets/653cd3b7-6ba0-4901-b0bc-0d8f720f5a76)
+- GitHub Actions & The images on the Docker-Hub
+![image](https://github.com/user-attachments/assets/22f909f4-5bb6-4d92-a9ba-ef5063cfa793)
