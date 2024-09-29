@@ -9,21 +9,20 @@ networks:
           gateway: 172.18.0.1  # Optional: Set the gateway IP
           
 services:
-
   # MYSQL DataBase
   db:
     image: mysql:8.0
     container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: root_password    
-      MYSQL_HOST: 127.0.0.1
-      MYSQL_DATABASE: bookapi
-      MYSQL_USER: app
-      MYSQL_PASSWORD: password 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
     networks:
       network:
         ipv4_address: 172.18.0.2  # Valid static IP address
@@ -31,18 +30,17 @@ services:
       - 8.8.8.8
       - 8.8.4.4
 
-  
   # Backend (Laravel)
   api:
     build: ./api
     container_name: api
     environment:
-      DB_CONNECTION: mysql
-      DB_HOST: 172.18.0.2
-      DB_PORT: 3306
-      DB_DATABASE: bookapi
-      DB_USERNAME: app
-      DB_PASSWORD: password
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     networks:
       network:
         ipv4_address: 172.18.0.3  # Valid static IP address
