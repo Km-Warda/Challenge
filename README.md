@@ -3,6 +3,8 @@
 - #### The Frontend `CLIENT` written in Nuxt.js, and listens on port 3000.
 - #### Nginx Server as a proxy server, and listens on Https port.
 - #### GitHub action as a CICD tool
+![image](https://github.com/user-attachments/assets/c414f3b1-fa85-466e-b6f8-0c050474a7cf)
+
 
 #  Application Images
 - Docker files are created in the `./api` & `./client` for the backend & frontend respectively.
